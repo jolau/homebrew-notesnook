@@ -1,7 +1,9 @@
 # Written by scripts/fork/release.sh in jolau/notesnook (branch fork).
 cask "notesnook-fork" do
-  # a release of a private repository: downloaded with a GitHub token, e.g.
-  #   export HOMEBREW_GITHUB_API_TOKEN="$(gh auth token)"
+  # a release of a private repository: downloaded with a GitHub token that
+  # can read it, set in ~/.homebrew/brew.env (so that every brew command
+  # has it, brew autoupdate's too):
+  #   HOMEBREW_GITHUB_API_TOKEN=github_pat_...
   # (the GitHub CLI itself cannot be asked from here: Homebrew downloads
   # where it has no access to its login)
   token = ENV.fetch("HOMEBREW_GITHUB_API_TOKEN", "")

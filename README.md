@@ -9,19 +9,16 @@ Mac that builds it and only publishes when Notesnook has a new stable release.
 
 Apple Silicon only.
 
-1. Log in to GitHub with the GitHub CLI, and give Homebrew its token: the
-   builds are releases of a private repository, and Homebrew downloads them
-   with `HOMEBREW_GITHUB_API_TOKEN`.
+1. Give Homebrew a GitHub token that can read the builds: they are releases
+   of a private repository. Create a
+   [fine-grained token](https://github.com/settings/personal-access-tokens/new)
+   with access to **only** `jolau/notesnook` and the permission
+   **Contents: Read-only**, then save it where every `brew` command (`brew
+   autoupdate` too) finds it, replacing `github_pat_...` with the token:
 
    ```bash
-   brew install gh && gh auth login
+   mkdir -p ~/.homebrew && echo 'HOMEBREW_GITHUB_API_TOKEN=github_pat_...' >> ~/.homebrew/brew.env && chmod 600 ~/.homebrew/brew.env
    ```
-
-   ```bash
-   echo 'export HOMEBREW_GITHUB_API_TOKEN="$(gh auth token 2>/dev/null)"' >> ~/.zprofile
-   ```
-
-   Then open a new terminal window.
 
 2. Add the tap (over SSH, since it is private), and trust it: Homebrew only
    loads casks from taps you trust.
