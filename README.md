@@ -16,10 +16,15 @@ Apple Silicon only.
    brew install gh && gh auth login
    ```
 
-2. Add the tap (over SSH, since it is private):
+2. Add the tap (over SSH, since it is private), and trust it: Homebrew only
+   loads casks from taps you trust.
 
    ```bash
    brew tap jolau/notesnook git@github.com:jolau/homebrew-notesnook.git
+   ```
+
+   ```bash
+   brew trust jolau/notesnook
    ```
 
 3. Install. If a `Notesnook.app` is already in `/Applications`, add `--force`
