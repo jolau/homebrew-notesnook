@@ -1,9 +1,10 @@
 # Written by scripts/fork/release.sh in jolau/notesnook (branch fork).
 cask "notesnook-fork" do
   # a release of a private repository: downloaded with the GitHub CLI's
-  # login (gh auth login), or with HOMEBREW_GITHUB_API_TOKEN
+  # login (gh auth login), or with HOMEBREW_GITHUB_API_TOKEN. By its full
+  # path: Homebrew's PATH does not have its own bin.
   token = ENV.fetch("HOMEBREW_GITHUB_API_TOKEN") do
-    Utils.safe_popen_read("gh", "auth", "token").chomp
+    Utils.safe_popen_read((HOMEBREW_PREFIX/"bin/gh").to_s, "auth", "token").chomp
   rescue
     ""
   end
