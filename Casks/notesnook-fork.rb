@@ -27,8 +27,8 @@ cask "notesnook-fork" do
 
   # signed with a certificate of its own, not one Apple knows: without
   # this, macOS would refuse to open it after downloading
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Notesnook.app"]
+  installed = "#{appdir}/Notesnook.app"
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", installed], must_succeed: false
   end
 end
