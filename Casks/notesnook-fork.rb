@@ -1,18 +1,9 @@
 # Written by scripts/fork/release.sh in jolau/notesnook (branch fork).
 cask "notesnook-fork" do
-  # a release of a private repository: downloaded with a GitHub token that
-  # can read it, set in ~/.homebrew/brew.env (so that every brew command
-  # has it, brew autoupdate's too):
-  #   HOMEBREW_GITHUB_API_TOKEN=github_pat_...
-  # (the GitHub CLI itself cannot be asked from here: Homebrew downloads
-  # where it has no access to its login)
-  token = ENV.fetch("HOMEBREW_GITHUB_API_TOKEN", "")
+  version "3.4.13-fork.a427033"
+  sha256 "713bfdc7582e6f2ac25382534d4b857c1d9f3bffd78516fd28a5347cce5b06f1"
 
-  version "3.4.13-fork.9d17391"
-  sha256 "e20ba8778ecf26dfb035920e556e655d7cca806877490bbbca6ab33de56fe788"
-
-  url "https://api.github.com/repos/jolau/notesnook/releases/assets/741219522",
-      header: ["Accept: application/octet-stream", "Authorization: Bearer #{token}"]
+  url "https://github.com/jolau/notesnook/releases/download/v#{version}/Notesnook-#{version}-arm64.zip"
   name "Notesnook (fork)"
   desc "Notesnook, built from jolau's fork"
   homepage "https://github.com/jolau/notesnook"
